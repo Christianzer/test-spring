@@ -1,0 +1,57 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet  id="1"  author="christian">
+        <sql>
+            CREATE TABLE Utilisateurs (
+            id BIGINT NOT NULL AUTO_INCREMENT,
+            username VARCHAR(255) NOT NULL,
+            nom VARCHAR(255) NOT NULL ,
+            mot_de_passe VARCHAR(255) NOT NULL ,
+            role VARCHAR(255) NOT NULL,
+            CONSTRAINT PK_id PRIMARY KEY(id)
+            );
+        </sql>
+        <rollback>
+            DROP table Utilisateurs;
+        </rollback>
+    </changeSet>
+
+    <changeSet  id="2"  author="christian">
+        <sql>
+            CREATE TABLE Produits (
+            id BIGINT NOT NULL AUTO_INCREMENT,
+            nom VARCHAR(255) NOT NULL ,
+            prix DOUBLE NOT NULL ,
+            description VARCHAR(1000) NOT NULL ,
+            CONSTRAINT PK_id PRIMARY KEY(iD)
+            );
+        </sql>
+        <rollback>
+            DROP table Produits;
+        </rollback>
+    </changeSet>
+
+
+    <changeSet  id="3"  author="christian">
+        <sql>
+            CREATE TABLE Transactions (
+            id BIGINT NOT NULL AUTO_INCREMENT,
+            produit_id BIGINT NOT NULL,
+            users_id BIGINT NOT NULL ,
+            date_push DATETIME NOT NULL,
+            CONSTRAINT PK_id PRIMARY KEY(iD),
+            CONSTRAINT Fk_tr_prod FOREIGN KEY (produit_id) REFERENCES Produits(id) ON DELETE CASCADE ON UPDATE CASCADE,
+            CONSTRAINT Fk_tr_users FOREIGN KEY (users_id) REFERENCES Utilisateurs(id) ON DELETE CASCADE ON UPDATE CASCADE
+            );
+        </sql>
+        <rollback>
+            DROP table Transactions;
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

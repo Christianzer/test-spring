@@ -1,0 +1,12 @@
+-initailiser le projet 
+-aller src/main/application-property
+	spring.application.name=test-server
+spring.jpa.hibernate.ddl-auto=none
+spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
+spring.datasource.username=root
+spring.datasource.password=1234
+
+#liquidebase
+spring.liquibase.change-log=classpath:/db/changelog/ db.changelog-master.xml
+
+--creer les models
