@@ -12,3 +12,4 @@ spring.liquibase.change-log=classpath:/db/changelog/ db.changelog-master.xml
 --creer les models
 --creer les repertoires (interfaces)
 --creer les services(Un interface et une classe implementation)
+--creer les controllers
